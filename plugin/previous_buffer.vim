@@ -39,6 +39,11 @@ function! s:bufferIsApplicable()
         return 0
     end
 
+    " ignore quickfix windows
+    if &buftype == "quickfix"
+      return 0
+    end
+
     if g:previous_buffer_ignore_pattern != ''
         if bufname('%') =~? g:previous_buffer_ignore_pattern
             return 0
