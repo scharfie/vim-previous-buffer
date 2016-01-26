@@ -44,6 +44,11 @@ function! s:bufferIsApplicable()
       return 0
     end
 
+    " ignore buffer if it's already stored
+    if exists('w:previous_buffer') && bufnr('%') == w:previous_buffer
+      return 0
+    end
+
     if g:previous_buffer_ignore_pattern != ''
         if bufname('%') =~? g:previous_buffer_ignore_pattern
             return 0
